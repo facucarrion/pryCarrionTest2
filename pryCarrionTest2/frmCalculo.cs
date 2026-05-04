@@ -31,18 +31,35 @@ namespace pryManasseroTest
                 costoBase = 350000;
             }
 
+            lblProducto.Text = producto;
+
+            lblCostoBase.Text += " " + varTipoProducto;
+            lblNumCostoBase.Text = "$" + costoBase.ToString();
+
             costoTotal = costoBase;
 
-            foreach (var adicional in lstAdicionalesRecibidas)
+            foreach (var adicional in lstAdicionalesRecibidas) 
             {
-                if (adicional == "Envio") costoTotal += costoBase * 0.05;
-                if (adicional == "Instalacion") costoTotal += costoBase * 0.15;
-                if (adicional == "Garantia") costoTotal += costoTotal * 0.20;
+                if (adicional == "Envio") {
+                    costoTotal += costoBase * 0.05;
+                    lblNumCostoEnvio.Text = "$" + (costoBase * 0.05).ToString();
+                }
+                
+                if (adicional == "Instalacion") {
+                    costoTotal += costoBase * 0.15;
+                    lblNumCostoInstalacion.Text = "$" + (costoBase * 0.15).ToString();
+                }
+            
+                if (adicional == "Garantia") {
+                    costoTotal += costoTotal * 0.20;
+                    lblNumCostoGarantia.Text = "$" + (costoTotal * 0.20).ToString();
+                }
             }
 
+            lblNumCostoIva.Text = "$" + (costoTotal * 0.21).ToString();
             costoTotal += costoTotal * 0.21;
 
-            lblCosto.Text = "$" + costoTotal.ToString();
+            lblNumCostoTotal.Text = "$" + costoTotal.ToString();
         }
 
         private void lblConsignas_Click(object sender, EventArgs e)
@@ -51,6 +68,16 @@ namespace pryManasseroTest
         }
 
         private void frmCalculo_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCosto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCostoInstalacion_Click(object sender, EventArgs e)
         {
 
         }
